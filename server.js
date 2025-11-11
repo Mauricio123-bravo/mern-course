@@ -34,7 +34,18 @@ cloudinary.config({
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-app.use(express.static(path.resolve(__dirname, "./public")));
+app.use(
+  express.static(path.resolve(__dirname, "./public"), {
+    setHeaders: (res, filePath) => {
+      if (filePath.endsWith(".css")) {
+        res.setHeader("Content-Type", "text/css");
+      }
+      if (filePath.endsWith(".js")) {
+        res.setHeader("Content-Type", "application/javascript");
+      }
+    },
+  })
+);
 
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
