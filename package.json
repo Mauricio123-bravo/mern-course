@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "setup-project": "pnpm i && cd front-app && pnpm i",
+    "setup-production-app": "pnpm i && cd front-app && pnpm i && pnpm build",
     "dev": "nodemon server.js"
   },
   "keywords": [],
