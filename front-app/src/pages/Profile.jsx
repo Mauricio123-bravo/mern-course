@@ -15,7 +15,11 @@ export const action = async ({ request }) => {
   }
 
   try {
-    await customFetch.put("/users/update-user", formData);
+    await customFetch.put("/users/update-user", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
     toast.success("Profile updated successfully");
   } catch (error) {
     toast.error(error?.response?.data?.msg);
